@@ -1,12 +1,12 @@
-FROM alpine:latest
+FROM debian:latest
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     bash \
     freeradius \
-    freeradius-eap \
     make \
-    openssl
+    openssl \
+    sudo
 
 COPY --chmod=0755 ./docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
-CMD ["/usr/sbin/radiusd", "-X"]
+CMD ["/usr/sbin/freeradius", "-X"]

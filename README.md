@@ -13,5 +13,5 @@ Edit certs/\*.cnf
 ```
 
 ```
-% docker-compose exec radius cat /etc/raddb/certs/client.p12 > client.p12
+% docker-compose exec radius cat /etc/freeradius/3.0/certs/client.p12 > client.p12
 ```

@@ -1,0 +1,22 @@
+version: '3'
+services:
+  radius:
+    build: .
+    volumes:
+      - ./raddb/radiusd.conf:/etc/raddb/radiusd.conf:ro
+      - ./raddb/clients.conf:/etc/raddb/clients.conf:ro
+      - ./raddb/mods-config/files/authorize:/etc/raddb/mods-config/files/authorize:ro
+      - ./raddb/mods-enabled/eap:/etc/raddb/mods-enabled/eap:ro
+      - ./raddb/certs/ca.cnf:/etc/raddb/certs/ca.cnf:ro
+      - ./raddb/certs/server.cnf:/etc/raddb/certs/server.cnf:ro
+      - ./raddb/certs/client.cnf:/etc/raddb/certs/client.cnf:ro
+    ports:
+      - 1812-1813:1812-1813/udp
+
+  # test:
+  #   build: .
+  #   depends_on:
+  #     - radius
+  #   tty: true
+  #   stdin_open: true
+  #   command: bash
